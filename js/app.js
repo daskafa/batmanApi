@@ -9,7 +9,7 @@ $(document).ready(function(){
                for (i = 0; i < result.length; i++){
                    let names = result[i]['external']
                    console.log(names);
-                   $('.list').append('<ul><li>' + names + '</li></ul>');
+                   $('.list ul').append('<li>' + names + '</li>');
                }
 
                // let names = result[12]['external'];

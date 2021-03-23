@@ -1,3 +1,30 @@
 body{
-    background-color: azure;
+    background-color: #fff;
+}
+p{
+    margin: 0;
+}
+.card-item{
+    background-color: #fff;
+    border-radius: 7px;
+}
+.card-item h3{
+    font-size: 20px;
+}
+.card-item .price span:nth-child(1){
+    font-weight: bold;
+    font-size: 25px;
+}
+.card-item .price span:nth-child(2){
+    color: red;
+    text-decoration: line-through;
+    font-weight: bold;
+}
+.card-item button{
+    background-color: #2ecc71;
+    border: 2px solid #2ecc71;
+    border-radius: 7px;
+    padding: 5px 25px;
+    color: white;
+    font-weight: bold;
 }
