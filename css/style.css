@@ -40,3 +40,20 @@ p{
     object-fit: cover;
     height: 13em;
 }
+.discount button{
+    background: #212121;
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 10px 30px;
+    border-radius: 7px;
+    transition: .4s;
+
+}
+.discount button:hover{
+    background-color: transparent;
+    transition: .4s;
+    color: #212121;
+    font-weight: bold;
+    box-shadow: 3px 3px 0px #212121;
+    border-color: #212121;
+}

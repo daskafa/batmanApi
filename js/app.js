@@ -6,7 +6,7 @@ $(document).ready(function(){
         type : "GET",
         success : function (result){
             for (i = 0; i < result.length; i++){
-                arr.push(result[i]['gameID']);
+                arr.push(result[i]['cheapestDealID']);
                 let names = result[i]['external'];
                 let prices = result[i]['cheapest'];
                 let thumb = result[i]['thumb'];
@@ -20,7 +20,7 @@ $(document).ready(function(){
                     '<h3 class="font font-weight-bold">' + names + '</h3>' +
                     '</div>' +
                     '<div class="price text-right pt-2 pr-3">' +
-                    '<span>' + prices + ' TL' +  '</span>' +
+                    '<span>' + prices + ' &#36;' +  '</span>' +
                     '</div>' +
                     '</div>' +
                     '</div>'
@@ -31,70 +31,34 @@ $(document).ready(function(){
             console.log(`Error ${error}`);
         }
     });
-
-
-
-
-
-
-
-
-
-
+    function add(array){
+        console.log(array['gameInfo'])
+    }
 
     $('.discount').on('click', function (){
-        const endPoint = "https://www.cheapshark.com/api/1.0/games?title=batman&limit=60&exact=0";
-        var arr = [];
-
-        function get(response){
-            if (response['deals'].length < 2 ){
-                // let noDiscount = response['deals']
-                // console.log(noDiscount[0])
-            }else{
-                let discountPrice = response['deals'][1]['price']
-                console.log(discountPrice)
-            }
-        }
-
-        $.ajax({
-            url : endPoint,
-            type : "GET",
-            success : function (result){
-                for (i = 0; i < result.length; i++){
-                    arr.push(result[i]['gameID']);
+        var array = [];
+        arr.forEach(function (url){
+            const endPoint = "https://www.cheapshark.com/api/1.0/deals?id=" + url;
+            $.ajax({
+               url: endPoint,
+               method : "GET",
+               success : function (response){
+                   // array.push(response['gameInfo']['retailPrice']);
+                   add(response);
+               } ,
+                error : function (error){
+                    console.log(`Error ${error}`);
                 }
-                arr.forEach(function (x){
-                    const secondPoint = "https://www.cheapshark.com/api/1.0/games?id=" + x ;
-                    $.ajax({
-                        url : secondPoint,
-                        type : "GET",
-                        success : function (response){
-                            get(response);
-                        }
-                    })
-
-
-                })
-            },
-            error : function (error){
-                console.log(`Error ${error}`);
-            }
-        });
+            });
+        })
     })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 });
+
+
+
+
+
+
+
+
+
